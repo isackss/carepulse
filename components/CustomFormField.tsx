@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Control, Field } from "react-hook-form";
-
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
@@ -46,7 +45,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               height={24}
               width={24}
               alt={iconAlt || "icon"}
-              className="ml-2"
+              className="ml-2 size-auto"
             />
           )}
           <FormControl>
