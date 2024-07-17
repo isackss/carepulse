@@ -1,17 +1,20 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form } from "@/components/ui/form";
+import { Doctors } from "@/constants";
 import { createUser } from "@/lib/actions/patient.actions";
 import { UserFormValidation } from "@/lib/validations";
 
 import CustomFormField from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
+import { SelectItem } from "../ui/select";
 
 import { FormFieldType } from "./PatientForm";
 
@@ -68,35 +71,32 @@ const AppointmentForm = ({
           </p>
         </section>
 
-        <CustomFormField
-          fieldType={FormFieldType.INPUT}
-          control={form.control}
-          name="name"
-          label="Full name"
-          placeholder="John Doe"
-          iconSrc="/assets/icons/user.svg"
-          iconAlt="user"
-        />
-
-        <CustomFormField
-          fieldType={FormFieldType.INPUT}
-          control={form.control}
-          name="email"
-          label="Email"
-          placeholder="johndoe@jsmastery.pro"
-          iconSrc="/assets/icons/email.svg"
-          iconAlt="email"
-        />
-
-        <CustomFormField
-          fieldType={FormFieldType.PHONE_INPUT}
-          control={form.control}
-          name="phone"
-          label="Phone number"
-          placeholder="(555) 123-4567"
-          iconSrc="/assets/icons/email.svg"
-          iconAlt="email"
-        />
+        {type !== "cancel" && (
+          <>
+            <CustomFormField
+              fieldType={FormFieldType.SELECT}
+              control={form.control}
+              name="primaryPhysician"
+              label="Primary physician"
+              placeholder="Select a physician"
+            >
+              {Doctors.map((doctor) => (
+                <SelectItem key={doctor.name} value={doctor.name}>
+                  <div className="flex cursor-pointer items-center gap-2">
+                    <Image
+                      src={doctor.image}
+                      height={32}
+                      width={32}
+                      alt={doctor.name}
+                      className="rounded-full border border-dark-500"
+                    />
+                    <p>{doctor.name}</p>
+                  </div>
+                </SelectItem>
+              ))}
+            </CustomFormField>
+          </>
+        )}
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
