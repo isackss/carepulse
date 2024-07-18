@@ -3,8 +3,6 @@
 import { ID, Query } from "node-appwrite";
 import { InputFile } from "node-appwrite/file";
 
-import { IdentificationTypes } from "@/constants";
-
 import {
   BUCKET_ID,
   DATABASE_ID,
