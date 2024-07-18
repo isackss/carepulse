@@ -1,3 +1,5 @@
+"use server";
+
 import { ID } from "node-appwrite";
 
 import {
@@ -23,3 +25,11 @@ export const createAppointment = async (
     console.log(error);
   }
 };
+
+/* export const getAppointment = async (appointentId: string) => {
+  try {
+
+  } catch (error) {
+    console.log(error);
+  }
+}; */
