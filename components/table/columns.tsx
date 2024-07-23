@@ -1,7 +1,6 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 
 import { Doctors } from "@/constants";
@@ -9,15 +8,6 @@ import { formatDateTime } from "@/lib/utils";
 
 import AppointmentModal from "../AppointmentModal";
 import StatusBadge from "../StatusBadge";
-import { Button } from "../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -68,10 +58,10 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <div className="flex items-center gap-3">
           <Image
-            src={doctor!.image}
+            src={doctor?.image}
             height={100}
             width={100}
-            alt={doctor!.name}
+            alt={doctor?.name}
             className="size-8"
           />
           <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
@@ -82,9 +72,20 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
-    cell: ({ row }) => (
+    cell: ({ row: { original: data } }) => (
       <div className="flex gap-1">
-        <AppointmentModal />
+        <AppointmentModal
+          type="schedule"
+          patientId={data.patient.$id}
+          userId={data.userId}
+          appointment={data}
+        />
+        <AppointmentModal
+          type="cancel"
+          patientId={data.patient.$id}
+          userId={data.userId}
+          appointment={data}
+        />
       </div>
     ),
   },
