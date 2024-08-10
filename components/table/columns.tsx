@@ -17,14 +17,14 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "patient",
-    header: "Patient",
+    header: "Paciente",
     cell: ({ row }) => (
       <p className="text-14-medium">{row.original.patient.name}</p>
     ),
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "Estado",
     cell: ({ row }) => (
       <div className="min-w-[115px]">
         <StatusBadge status={row.original.status} />
@@ -33,7 +33,7 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "schedule",
-    header: "Appointment",
+    header: "Fecha de la cita",
     cell: ({ row }) => (
       <p className="text-14-regular min-w-[100px]">
         {formatDateTime(row.original.schedule).dateTime}
@@ -50,10 +50,10 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div className="flex items-center gap-3">
           <Image
-            src={doctor?.image}
+            src={doctor?.image!}
             height={100}
             width={100}
-            alt={doctor?.name}
+            alt={doctor?.name!}
             className="size-8"
           />
           <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
@@ -63,7 +63,7 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     id: "actions",
-    header: () => <div className="pl-4">Actions</div>,
+    header: () => <div className="pl-4">Acciones</div>,
     cell: ({ row: { original: data } }) => (
       <div className="flex gap-1">
         <AppointmentModal

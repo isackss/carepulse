@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import StatCard from "@/components/StatCard";
-import { columns, Payment } from "@/components/table/columns";
+import { columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/DataTable";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 
@@ -26,28 +26,28 @@ const Admin = async () => {
       </header>
       <main className="admin-main">
         <section className="w-full space-y-4">
-          <h1 className="header">Welcome 🖐</h1>
+          <h1 className="header">Bienvenido 🖐</h1>
           <p className="text-dark-700">
-            Start the day with managing new appointments.
+            Comienza el día agendando nuevas citas.
           </p>
         </section>
         <section className="admin-stat">
           <StatCard
             type="appointments"
             count={appointments.scheduledCount}
-            label="Scheduled appointments"
+            label="Citas confirmadas"
             icon="/assets/icons/appointments.svg"
           />
           <StatCard
             type="pending"
             count={appointments.pendingCount}
-            label="Pending appointments"
+            label="Citas pendientes"
             icon="/assets/icons/pending.svg"
           />
           <StatCard
             type="cancelled"
             count={appointments.cancelledCount}
-            label="Cancelled appointments"
+            label="Citas canceladas"
             icon="/assets/icons/cancelled.svg"
           />
         </section>
