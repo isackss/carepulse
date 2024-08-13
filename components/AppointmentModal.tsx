@@ -28,6 +28,8 @@ const AppointmentModal = ({
 }) => {
   const [open, setOpen] = useState(false);
 
+  const translatedType = type === "cancel" ? "cancelar" : "agendar";
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -35,7 +37,7 @@ const AppointmentModal = ({
           variant="ghost"
           className={`capitalize ${type === "schedule" && "text-green-500"}`}
         >
-          {type}
+          {translatedType}
         </Button>
       </DialogTrigger>
       <DialogContent className="shad-dialog sm:max-w-md">

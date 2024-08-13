@@ -4,7 +4,10 @@ import Image from "next/image";
 import { StatusIcon } from "@/constants";
 
 const StatusBadge = ({ status }: { status: Status }) => {
-  console.log(status);
+  let translatedStatus = "";
+  if (status === "cancelled") translatedStatus = "cancelado";
+  else if (status === "pending") translatedStatus = "pendiente";
+  else translatedStatus = "agendado";
 
   return (
     <div
@@ -28,7 +31,7 @@ const StatusBadge = ({ status }: { status: Status }) => {
           "text-red-500": status === "cancelled",
         })}
       >
-        {status}
+        {translatedStatus}
       </p>
     </div>
   );
